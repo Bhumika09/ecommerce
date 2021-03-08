@@ -3,11 +3,6 @@
 @section('main-content')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
-            @include('backend.layouts.notification')
-         </div>
-     </div>
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>
       <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Product</a>
@@ -26,7 +21,7 @@
               <th>Discount</th>
               <th>Size</th>
               <th>Condition</th>
-              <th>Brand</th>
+              <!-- <th>Brand</th> -->
               <th>Stock</th>
               <th>Photo</th>
               <th>Status</th>
@@ -43,7 +38,7 @@
               <th>Discount</th>
               <th>Size</th>
               <th>Condition</th>
-              <th>Brand</th>
+              <!-- <th>Brand</th> -->
               <th>Stock</th>
               <th>Photo</th>
               <th>Status</th>
@@ -56,7 +51,7 @@
               @php 
               $sub_cat_info=DB::table('categories')->select('title')->where('id',$product->child_cat_id)->get();
               // dd($sub_cat_info);
-              $brands=DB::table('brands')->select('title')->where('id',$product->brand_id)->get();
+      
               @endphp
                 <tr>
                     <td>{{$product->id}}</td>
@@ -73,7 +68,7 @@
                     <td>  {{$product->discount}}% OFF</td>
                     <td>{{$product->size}}</td>
                     <td>{{$product->condition}}</td>
-                    <td>@foreach($brands as $brand) {{$brand->title}} @endforeach</td>
+        
                     <td>
                       @if($product->stock>0)
                       <span class="badge badge-primary">{{$product->stock}}</span>
@@ -85,9 +80,9 @@
                         @if($product->photo)
                             @php 
                               $photo=explode(',',$product->photo);
-                              // dd($photo);
+                              //dd($photo);
                             @endphp
-                            <img src="{{$photo[0]}}" class="img-fluid zoom" style="max-width:80px" alt="{{$product->photo}}">
+                            <img src="{{ url($photo[0]) }}" class="img-fluid zoom" style="max-width:80px" alt="{{$product->photo}}">
                         @else
                             <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
                         @endif

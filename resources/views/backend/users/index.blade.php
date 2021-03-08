@@ -3,11 +3,6 @@
 @section('main-content')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
-     <div class="row">
-         <div class="col-md-12">
-            @include('backend.layouts.notification')
-         </div>
-     </div>
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary float-left">Users List</h6>
       <a href="{{route('users.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add User</a>
@@ -47,7 +42,8 @@
                     <td>{{$user->email}}</td>
                     <td>
                         @if($user->photo)
-                            <img src="{{$user->photo}}" class="img-fluid rounded-circle" style="max-width:50px" alt="{{$user->photo}}">
+                        <img src="{{ url($user->photo) }}" alt="image" class="img-fluid rounded-circle" style="max-width:50px">
+                           
                         @else
                             <img src="{{asset('backend/img/avatar.png')}}" class="img-fluid rounded-circle" style="max-width:50px" alt="avatar.png">
                         @endif

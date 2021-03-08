@@ -5,11 +5,6 @@
 @section('main-content')
 
 <div class="card shadow mb-4">
-    <div class="row">
-        <div class="col-md-12">
-           @include('backend.layouts.notification')
-        </div>
-    </div>
    <div class="card-header py-3">
      <h4 class=" font-weight-bold">Profile</h4>
      <ul class="breadcrumbs">
@@ -63,6 +58,7 @@
                               </a>
                           </span>
                           <input id="thumbnail" class="form-control" type="text" name="photo" value="{{$profile->photo}}">
+                          <img src="storage/app/{{ $profile->photo}}"></img>
                       </div>
                         @error('photo')
                         <span class="text-danger">{{$message}}</span>
